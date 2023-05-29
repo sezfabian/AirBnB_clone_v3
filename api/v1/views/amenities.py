@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Objects that handle all default RESTful API actions for Amenity objects """
-from flask import Flask, jsonify, abort, request
+from flask import Flask, jsonify, abort, request, make_response
 from api.v1.views import app_views
 from models import storage
 from models.amenity import Amenity
