@@ -78,6 +78,11 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(type(new_dict), dict)
         self.assertIs(new_dict, storage._FileStorage__objects)
 
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_all_no_class(self):
+        """Test that all returns all rows when no class is passed"""
+        self.assertIs(type(models.storage.all()), dict)
+
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_new(self):
         """test that new adds an object to the FileStorage.__objects attr"""
@@ -116,7 +121,7 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t == 'db', "not testing db storage")
     def test_get(self):
-        """Test the get method og file storage"""
+        """Test the get method get file storage"""
         self.assertEqual(models.storage.get('Cont', 'tyewc2345'), None)
         storage = FileStorage()
         mydict = storage.all()
